@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "co.jp.r.grpc.proxy";
+
+package parrot.proxy;
+
+service ParrotClient {
+  rpc Purchase (ParrotPurchaseRequest) returns (ParrotPurchaseResponse) {}
+  rpc PurchaseStream (stream ParrotPurchaseRequest) returns (stream ParrotPurchaseResponse) {}
+}
+
+message ParrotPurchaseRequest {
+  string transactionId = 1;
+  string requestDate = 2;
+  int32 amount = 3;
+}
+
+message ParrotPurchaseResponse {
+  string transactionId = 1;
+  string responseCode = 2;
+}
